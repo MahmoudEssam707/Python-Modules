@@ -178,5 +178,5 @@ Cursor.fetchone() #will return single row of the database "like next in iterable
 Cursor.fetchall() #will return all rows of the database as list of tuples
 Cursor.fetchmany("specific number of rows you want") #will return specific number of rows from the database
 #COMMIT THE ORDER AND CLOSE IT
-db.commit() #to do the order and save it into the database
-db.close() #to close the DataBase
+db.commit() # to do the order and save it into the database
+db.close() # to close the DataBase
