@@ -180,3 +180,81 @@ Cursor.fetchmany("specific number of rows you want") #will return specific numbe
 #COMMIT THE ORDER AND CLOSE IT
 db.commit() # to do the order and save it into the database
 db.close() # to close the DataBase
+#-----------------------------------------------------------------------------------------------------------------------
+#Timeit to calculate the performance of the code
+#it's module get the minimum time of execution
+import timeit as ti #importing the module
+ti.timeit(stmt="the code you want to calculate",setup="if the code require modules to import",number="number of tries")
+#it's default tries = 1000000 try to do
+#EX :
+ti.timeit(stmt="Hello World")
+#every time code execute nearly number to it
+#to calculate a lot in the same time we use repeat
+ti.repeat() #With same parameters but with add "repeat" parameter with them
+#EX :
+ti.repeat(stmt="Hello World",repeat=5)
+#-----------------------------------------------------------------------------------------------------------------------
+# logging with python, Log : Logging is a means of tracking events that happen when some software runs.
+# type of loggings : DEBUG - INFO - WARNING - ERROR - CRITICAL
+# Debug : Detailed information, typically of interest only when diagnosing problems.
+# INFO : Confirmation that things are working as expected.
+# Warning : An indication that something unexpected happened, or indicative of some problem in the near future (e.g. ‘disk space low’). The software is still working as expected
+# ERROR : Due to a more serious problem, the software has not been able to perform some function.
+# CRITICAL :A serious error, indicating that the program itself may be unable to continue running.
+# now will start coding it :
+import logging  # import the module
+logging.basicConfig(filename="P.log",
+                    filemode="a",
+                    format="(%(name)s) | (%(levelname)s) | => \"%(message)s\" /%(asctime)s\\",
+                    datefmt="%d %B %Y , %H:%M:%S")
+my_logger = logging.getLogger("Mahmoud Essam")  # to change the name from "Root" to "the name you want"
+# Basic where will start to built my log file,file mode detailed in file handling
+# and %(name)s will return the name of logger and %(levelname)s for the type of the level and %(message)s will return
+# the message and %(asctime)s will return the time of happening the log
+# format will give you way to print your log as the style you want
+# datafmt is formatting the style of Asctime "From data time and format"
+my_logger.critical("Critical Message")  # create critical message to the log
+my_logger.info("Info Message")  # create info message to the log
+my_logger.debug("Debug Message")  # create debug message to the log
+my_logger.error("Error Message")  # create error message to the log
+my_logger.warn("Warning Message")  # create warning message to the log
+#This all formats for log :
+#LOG:
+# asctime: %(asctime)s
+# created: %(created)f
+# filename: %(filename)s
+# funcName: %(funcName)s
+# levelname: %(levelname)s
+# levelno: %(levelno)s
+# lineno: %(lineno)d
+# message: %(message)s
+# module: %(module)s
+# msec: %(msecs)d
+# name: %(name)s
+# pathname: %(pathname)s
+# process: %(process)d
+# processName: %(processName)s
+# relativeCreated: %(relativeCreated)d
+# thread: %(thread)d
+# threadName: %(threadName)s
+#-----------------------------------------------------------------------------------------------------------------------
+# Sure you listened about "CodeForces and leetcode" right ?
+# Now will talk about UnitTesting!
+# Test Case : smallest unit of test and use assert method to check for the action
+# Test suite : collection of test cases
+# Test report : report contains if all tests failed or succeed
+# "Without Module of Unittest" =>
+assert 7 * 7 == 49, "Should this answer be true"  # If succeed won't print anything, else will print the message
+# Now let's create Tester :
+import unittest  # now you imported the unittest , Unittest adds tests into classes and methods
+class MyTester(unittest.TestCase):  # now we inserted this class as TestCase place
+    # you have a lot of assert methods but will use the general
+    def test_number_1(self): #don't forget to put "test" in the first of the method to let unittest read it
+        self.assertTrue(70 > 40, "You have done something wrong")
+    def test_number_2(self):
+        self.assertEqual(50+50,100,"You have done something wrong")
+    def test_number_3(self):
+        self.assertGreater(100,80,"You have done something wrong")
+if __name__ == '__main__':
+    unittest.main() #here will runt your test python code
+#-----------------------------------------------------------------------------------------------------------------------
