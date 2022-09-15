@@ -258,3 +258,15 @@ class MyTester(unittest.TestCase):  # now we inserted this class as TestCase pla
 if __name__ == '__main__':
     unittest.main() #here will runt your test python code
 #-----------------------------------------------------------------------------------------------------------------------
+# Flask for Web Developing
+from flask import Flask  # here to import flask
+app = Flask(__name__)  # Here to assign the name of the application
+@app.route("/")  # the first web page : www.name.com/
+def homepage():
+    return "Hello"
+@app.route("/about")  # the about page : www.name.com/about
+def about():
+    return "About Page"
+if __name__ == "__main__":
+    app.run(debug=True, port=7000) #you can change the port to any number you want as if there's another programme use the same port
+    #and debug true to assign it as active with pin
