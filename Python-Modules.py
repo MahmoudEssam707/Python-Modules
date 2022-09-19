@@ -258,3 +258,32 @@ class MyTester(unittest.TestCase):  # now we inserted this class as TestCase pla
 if __name__ == '__main__':
     unittest.main() #here will runt your test python code
 #-----------------------------------------------------------------------------------------------------------------------
+# Flask for Web Developing
+from flask import Flask, render_template  # here to import flask, and render templates to use HTML
+app = Flask(__name__)  # Here to assign the name of the application
+@app.route("/")  # the first web page : www.name.com/
+def homepage():
+    return render_template("homepage.html",
+                           pagetitle="Homepage",
+                           custom_css="Home")
+    # but remember to put Templates folder in the same of the package
+    # and static for javascript and css files etc.
+    #and custom_css i used it for specific css page
+    #the usage of render to make all changes in this code to Html/css files
+@app.route("/about")  # the about page : www.name.com/about
+def about():
+    return render_template("About.html",
+                           pagetitle="About Page")
+mySkills = [("py",1),("html",2),("Css",3)]
+@app.route("/skill")
+def skill():
+    return render_template("skill.html",
+                           pagetitle="skill page",
+                           custom_css="skill",
+                           page_head="My Skills",
+                           Desc="This page about my skills",
+                           skills =mySkills)
+if __name__ == "__main__":
+    app.run(port=7000,debug=True)  # you can change the port to any number you want as if there's another programme use the same port
+    # and turue debug set the server will automatically reload for code changes and show a debugger in case an exception happened
+#-----------------------------------------------------------------------------------------------------------------------
