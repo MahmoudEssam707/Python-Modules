@@ -128,7 +128,7 @@ print(cars) # and here you have done it!
 #     "THIS WAY USED TO ADD NEW COLUMN TO THE DATA FRAME WITH "iterrow"
 # and you can change format of data from CSV to EXCEL with pandas with this code :
 import pandas as pd
-from openpyxl.workbook import Workbook
+
 read_file = pd.read_csv(r'The file path file.csv')
 read_file.to_excel(r'where to put your file.xlsx', index=None, header=True)
 #-----------------------------------------------------------------------------------------------------------------------
@@ -259,14 +259,88 @@ if __name__ == '__main__':
     unittest.main() #here will runt your test python code
 #-----------------------------------------------------------------------------------------------------------------------
 # Flask for Web Developing
-from flask import Flask  # here to import flask
+from flask import Flask, render_template  # here to import flask, and render templates to use HTML
 app = Flask(__name__)  # Here to assign the name of the application
 @app.route("/")  # the first web page : www.name.com/
 def homepage():
-    return "Hello"
+    return render_template("homepage.html",
+                           pagetitle="Homepage",
+                           custom_css="Home")
+    # but remember to put Templates folder in the same of the package
+    # and static for javascript and css files etc.
+    #and custom_css i used it for specific css page
+    #the usage of render to make all changes in this code to Html/css files
 @app.route("/about")  # the about page : www.name.com/about
 def about():
-    return "About Page"
+    return render_template("About.html",
+                           pagetitle="About Page")
+mySkills = [("py",1),("html",2),("Css",3)]
+@app.route("/skill")
+def skill():
+    return render_template("skill.html",
+                           pagetitle="skill page",
+                           custom_css="skill",
+                           page_head="My Skills",
+                           Desc="This page about my skills",
+                           skills =mySkills)
 if __name__ == "__main__":
-    app.run(debug=True, port=7000) #you can change the port to any number you want as if there's another programme use the same port
-    #and debug true to assign it as active with pin
+    app.run(port=7000,debug=True)  # you can change the port to any number you want as if there's another programme use the same port
+    # and turue debug set the server will automatically reload for code changes and show a debugger in case an exception happened
+#-----------------------------------------------------------------------------------------------------------------------
+# WEB Scrab WITH BEAUTIFUL SOUP
+# 1:- you need the next modules : (bs4)beatifulsoup4 "For scap" - requests "For ordering" - lxml "For converting to csv
+import requests  # to get the connection
+from bs4 import BeautifulSoup  # to make the scrab
+import csv  # to create the csv file
+from itertools import zip_longest  # to our text in csv more readable
+
+counter = 0
+while True:
+    # 2:- variable to store the web page we want
+    result = requests.get(f"https://wuzzuf.net/search/jobs/?a=hpb&q=python&start={counter}") #This link will try to scrab it
+    # 3:- get the content of the web page
+    src = result.content  # The html of the page
+    # 4:- now let's pass the html file we made for BS to make it's scrab
+    # The importance of "LXML" to can start my parse in BS easily
+    soup = BeautifulSoup(src, "lxml")
+    page_limit = int(soup.find("strong").text) # to get all rows
+    if counter > page_limit // 15:
+        print("Done !")
+        break
+    # 5:- Now let's extract the information we need from the page
+    # Job title - Job skills - company name - location name
+    Job_Title = soup.find_all("h2", {"class": "css-m604qf"})
+    Company_name = soup.find_all("a", {"class": "css-17s97q8"})
+    Location_name = soup.find_all("span", {"class": "css-5wys0k"})
+    Job_skill = soup.find_all("div", {"class": "css-y4udm8"})
+    # first parameter to find all "a" link in the web and the next dictionary to return the specific job title we need
+    # you can access this html details from "View Inspect" in your browser
+    # 6:- let's create lists to extract the required texts
+    Job_titles = []
+    Company_names = []
+    Location_names = []
+    Job_skills = []
+    links = []
+    # 6:- now we need to extract the words we need from this Html codes and append it into the list
+    for i in range(len(Job_Title)):  # you can use any of these variables because all of them are same lengths
+        Job_titles.append(Job_Title[i].text)
+        Company_names.append(Company_name[i].text)
+        Location_names.append(Location_name[i].text)
+        Job_skills.append(Job_skill[i].text)
+
+    # Till the step number 6 , You now know the importance of BS , Now let's put our data into csv
+    # ========================
+    # 7:- Now let's create csv file and fill it with our values
+    MyData = [Job_titles, Company_names, Location_names, Job_skills, links]
+    # But it will be written in format you may don't like it, so let's repair it !
+    MyData_V2 = zip_longest(*MyData)
+    with open("Job.csv", "a") as Csv:
+        wr = csv.writer(Csv)
+        wr.writerow(["Job Title", "Company Name", "Location Name", "Job skills ",
+                     "Links"])  # To Write A row "Should be in list braces"
+        wr.writerows(MyData_V2)
+    # Now you have done it !
+    counter+=1
+    print("Loading")
+#The video Reference from Codezilla ...
+#-----------------------------------------------------------------------------------------------------------------------
