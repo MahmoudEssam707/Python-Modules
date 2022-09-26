@@ -1,0 +1,11 @@
+{% extends 'Base.html' %}
+{% block body %}
+<h1>{{page_head}}</h1>
+<p class="page-description">{{Desc}}</p>
+{% for skill in skills%}
+<div>
+{{skill[0]}} | {{skill[1]}}
+</div>
+{%endfor%}
+{% endblock %}
+<!-- this way called Jinja Template-->

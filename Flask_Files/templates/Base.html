@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{pagetitle}}</title> <!-- now pagetitle will take the refrence from render_template in flask.py -->
+    <link rel="stylesheet" href="{{url_for('static',filename='Flask_Files/css/main.css')}}">
+                    <!-- that's called jinja syntax, url_for used to find the place of other files-->
+                    <!-- static is the folder we find , and filename to return it easily-->
+</head>
+<body>
+{%if custom_css %} <!-- because i want it for specific pages, if i put it into render_template for the page will apper-->
+<div><link rel="stylesheet" href="{{url_for('static',filename='Flask_Files/css/'+custom_css+'.css')}}"></div>
+                                            <!-- this way to specific css for sompage-->
+{%endif%}
+{% block body %} <!-- this way will save your time of change everytime the code -->
+{% endblock %}   <!--so you can change it only once when you want to change it-->
+<!-- this way called Jinja Template-->
+</body>
+</html>
