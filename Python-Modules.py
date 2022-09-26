@@ -344,3 +344,32 @@ while True:
     print("Loading")
 #The video Reference from Codezilla ...
 #-----------------------------------------------------------------------------------------------------------------------
+# Web scrab with Selenium
+import time
+from selenium import webdriver  # To start up our scrab
+from selenium.webdriver.common.by import By  # To extract the things we want
+from webdriver_manager.chrome import ChromeDriverManager
+browser = webdriver.Chrome(ChromeDriverManager().install())  # For Chrome users
+browser.get("https://www.google.com/") # Let's make our start from here and send YouTube word search bar
+# you can locate it from Inspect in your browser
+# XPATH is the Destination you take from the start of Html to the result you need
+# 1 : To send the word to search bar
+browser.find_element(By.XPATH, "html/body/div/div/form/div/div/div/div/div/input").send_keys("YouTube")
+# 2 : Now let's click on search
+browser.find_element(By.XPATH,"html/body/div/div/form/div/div/div/center/input").click()
+time.sleep(1)
+# 3 : to get first link
+browser.find_element(By.XPATH,"//*[@id='rso']/div[1]/div/div/div[1]/div/a").click()
+time.sleep(1)
+# 4 : to write Google in the bar
+browser.find_element(By.NAME,"search_query").send_keys("Google")
+time.sleep(1)
+# 5 : to press the button
+browser.find_element(By.ID,"search-icon-legacy").click()
+time.sleep(1)
+# 6 : to find Google icon and get it from the whole page
+browser.find_element(By.CLASS_NAME,"style-scope ytd-video-renderer").click()
+time.sleep(1)
+# 7 and the last : get the number of Subscribers of the page
+Number_Of_Google_Subs = browser.find_element(By.CLASS_NAME,"style-scope ytd-video-owner-renderer").text
+print(Number_Of_Google_Subs) # And here's Google number of Subscribers :)
