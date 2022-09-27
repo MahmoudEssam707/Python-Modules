@@ -1,10 +1,25 @@
 import datetime as dt
+print(dt.date(2002,12,12)) # Print only the date
+print(dt.time(7,25,30)) # print only the time
 print(dt.datetime.now())  # print time now with all details
 print(dt.datetime.now().year, dt.datetime.now().month, dt.datetime.now().day)  # print year and month and day
 print(dt.datetime.max, dt.datetime.min)  # print the maximum calendar and minimum one
 print(dt.datetime.now().time())  # print time hours second minutes and millisecond
+Dt1 = dt.datetime(2020, 1, 1, 0, 0, 0)
+# Timedelta to make shifts to your current date
+print(Dt1 + dt.timedelta(days=7))
+print(Dt1 + dt.timedelta(days=30))
+print(Dt1 + dt.timedelta(hours=30))
+print(Dt1 + dt.timedelta(minutes=15))
 print(dt.datetime(year=2002, month=12, day=12))  # print specific date
 print(dt.datetime(year=2002, month=12, day=12).strftime("%d/%B/%A/%a and etc"))  # return string format from the time
+print(dt.datetime(2021,4,20,11,30,00).strftime("%Y-%m-%d"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%d-%m-%Y"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%m-%Y"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%B-%Y"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%d %B,%Y"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%m/%d/%Y %H:%M:%S"))
+print(dt.datetime(2021,4,20,11,30,00).strftime("%d(%a) %B %Y"))
 # here all time formats you can choose https://strftime.org/
 #-----------------------------------------------------------------------------------------------------------------------
 from pytube import YouTube
@@ -373,3 +388,43 @@ time.sleep(1)
 # 7 and the last : get the number of Subscribers of the page
 Number_Of_Google_Subs = browser.find_element(By.CLASS_NAME,"style-scope ytd-video-owner-renderer").text
 print(Number_Of_Google_Subs) # And here's Google number of Subscribers :)
+#-----------------------------------------------------------------------------------------------------------------------
+# OS : Operating system, This module provides a portable way of using operating system dependent functionality.
+import os
+print(os.getcwd())  # to print your current path work
+print(os.listdir())  # print to the console a list containing the names of all files in the working directory.
+print([name for name in os.listdir() if name.endswith('.py')])  # to find specific dirs ends with Python extension
+# TO CHANGE DIR WORK :
+####################
+print(os.getcwd())  #
+os.mkdir('images')  # STEP 1 : Make the dir
+os.chdir('images')  # STEP 2 : changed into this dir
+print(os.getcwd())  # STEP 3 : Now your work will be into this dir
+# ##################
+# # Let's make little example : we will create document and put into it sales from 1 to 12 months
+print(os.getcwd())
+os.mkdir("documents")
+os.chdir("documents")
+x = [f'{str(i).zfill(2)}_sales' for i in range(1, 13)]
+for dirname in x:
+    os.mkdir(dirname)  # now will create all files we made in the list
+print(os.listdir())  # WE CREATED IT !
+print(os.path.exists("Example"))  # to check if this file exist or not
+os.path.join("The path you want", "File_Name")  # To put files into the specific path
+# EX : ____________________________________________________________
+base_dir = 'images'
+if not os.path.exists(base_dir):  # To make sure that file created
+    os.mkdir(base_dir)
+png_dir = os.path.join(base_dir, 'images_png')
+if not os.path.exists(png_dir):  # To make sure that file created
+    os.mkdir(png_dir)
+jpg_dir = os.path.join(base_dir, 'images_jpg')
+if not os.path.exists(jpg_dir):  # To make sure that file created
+    os.mkdir(jpg_dir)
+for root, dirs, files in os.walk(base_dir):
+    # Root is the main file , Dirs are the folders into it , Files are into the dirs which all
+    # of them in the tree created by os.walk
+    print(root, dirs, files, sep="\n")
+os.remove("Used to delete the file")
+#-----------------------------------------------------------------------------------------------------------------------
+
