@@ -456,6 +456,3 @@ print(f'stocks: {stocks}')  # The changed one
 print(f'stocks_copied_shallow: {stocks_copied_shallow}')  # The shallow copied one
 print(f'stocks_copied_deep: {stocks_copied_deep}')  # The deep copied one
 #-----------------------------------------------------------------------------------------------------------------------
-
-
-
