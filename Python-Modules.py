@@ -448,7 +448,7 @@ else: print("No values were given.")
 # Shallow Copy stores the references of objects to the original memory address.
 # Deep copy stores copies of the object's value.
 import copy
-stocks = [['CDR', '11B'], ['PLW'], ['TEN']]  # Will use this lists to try changing elements from it
+stocks = [['CDR', '11B'], ['PLW'],  ['TEN']]  # Will use this lists to try changing elements from it
 stocks_copied_shallow = copy.copy(stocks)  # Shallow copy will need to save the original one
 stocks_copied_deep = copy.deepcopy(stocks)  # Deep copy will need to save the original one
 stocks[0][1] = 'CRJ'  # Let's make change to make sure that the original one changed
