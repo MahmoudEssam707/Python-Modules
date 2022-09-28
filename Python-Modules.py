@@ -427,4 +427,35 @@ for root, dirs, files in os.walk(base_dir):
     print(root, dirs, files, sep="\n")
 os.remove("Used to delete the file")
 #-----------------------------------------------------------------------------------------------------------------------
+# Sys : This module provides access to some variables used or maintained by the interpreter and to functions that interact strongly with the interpreter
+import sys
+print(sys.executable)  # print the absolute path to the executable binary file for the Python interpreter.
+print(sys.path)  # print the path list where Python looks for modules
+# This way used to run code from terminal
+name = sys.argv[1] #
+print("Hello " + name + "!") #
+# To use it write in pycharm terminal , py -m "Filename".py YourName , result : Hello YourName!
+# EX: Let's make it Average Calc !
+if len(sys.argv)>1:
+    values = [int(value) for value in sys.argv[1:]]
+    result = sum(values)/len(values)
+    print(f"Average: {result:.5f}")
+else: print("No values were given.")
+#Terminal : py -m SYS.py 1 2 3 4 5 6 7 8 9 10
+#Result : Average = 5.5000
+#-----------------------------------------------------------------------------------------------------------------------
+# Copy : This module provides generic shallow and deep copy operations
+# Shallow Copy stores the references of objects to the original memory address.
+# Deep copy stores copies of the object's value.
+import copy
+stocks = [['CDR', '11B'], ['PLW'], ['TEN']]  # Will use this lists to try changing elements from it
+stocks_copied_shallow = copy.copy(stocks)  # Shallow copy will need to save the original one
+stocks_copied_deep = copy.deepcopy(stocks)  # Deep copy will need to save the original one
+stocks[0][1] = 'CRJ'  # Let's make change to make sure that the original one changed
+print(f'stocks: {stocks}')  # The changed one
+print(f'stocks_copied_shallow: {stocks_copied_shallow}')  # The shallow copied one
+print(f'stocks_copied_deep: {stocks_copied_deep}')  # The deep copied one
+#-----------------------------------------------------------------------------------------------------------------------
+
+
 
