@@ -464,25 +464,63 @@ import re
 text1 = 'Python 3.10'
 # \d will extract all digits from the string
 print(re.findall(r"^\d", text1))
+print(175*"#")
 # ^ means all things expect things , this will return all text without digits
 print(re.findall(r"[^\d]", text1))
+print(175*"#")
 # or you can do this to return all except the string
 print(re.findall(r"\D", text1))
+print(175*"#")
 # Ex2 : let's try extract all digits except the zeros :
 text2 = '0010-000-423'
 # to extract all numbers without zeros or -
 print(re.findall(r"[^0-]", text2))
+print(175*"#")
 # '+' here means 1 or more and will extract all numbers as group
 print(re.findall(r"[^-]+", text2))
+print(175*"#")
 # Ex3 : let's try to extract some digits and words from next text :
 text3 = 'PL code: XG-GH-110'
 # To extract first 2 words then get last 3 number
 print(re.findall(r"PL|\d+", text3))
+print(175*"#")
 # Ex4 : Let's make it harder , Let's extract emails from the next text :
 text4 = "Please send an email to info@template.com or sales-info@template.it"
 # the extraction :
 print(re.findall(r"[\w\.-]+@[\w\.-]+", text4))  # w for strings, . for all , + for getting all
 # Last thing : Substitute the numbers with something else with same pattern
+print(175*"#")
 text5 = "Please send an email to info@template.com or call to: 123-456-789"  # the pattern we need is : \d{3}-\d{3}-\d{3}
 print(re.sub(r"\d{3}-\d{3}-\d{3}", '***-***-***', text5))
 # Now you are familiar with Regular Expression !
+print(175*"#")
+#-----------------------------------------------------------------------------------------------------------------------
+# Pprint : "PrettyPrinter" module provides a capability to “pretty-print” arbitrary Python data structures
+# in a form which can be used as input to the interpreter
+from pprint import pprint
+# Here's Structure we will use
+data_dict = {
+    "users": [
+        {
+            "userId": 1,
+            "firstName": "Krish",
+            "lastName": "Lee",
+            "emailAddress": "krish.lee@example.com"
+        },
+        {
+            "userId": 2,
+            "firstName": "racks",
+            "lastName": "jacson",
+            "emailAddress": "racks.jacson@example.com"
+        },
+        {
+            "userId": 3,
+            "firstName": "denial",
+            "lastName": "roast",
+            "emailAddress": "denial.roast@example.com"
+        }
+    ]
+}
+print(data_dict) # This way will print it in not structured way
+print(175*"#")
+pprint(data_dict) # This way will print it in the structure you created
