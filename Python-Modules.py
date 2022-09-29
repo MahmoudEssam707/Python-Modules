@@ -456,3 +456,33 @@ print(f'stocks: {stocks}')  # The changed one
 print(f'stocks_copied_shallow: {stocks_copied_shallow}')  # The shallow copied one
 print(f'stocks_copied_deep: {stocks_copied_deep}')  # The deep copied one
 #-----------------------------------------------------------------------------------------------------------------------
+# re : "Regular Expression" This module provides regular expression matching operations similar to those found in Perl.
+import re
+# https://pythex.org/ to test the regular expression
+# https://www.debuggex.com/cheatsheet/regex/pcre use this cheat sheet will help you
+# Ex1 : let's try extract all digits from next word :
+text1 = 'Python 3.10'
+# \d will extract all digits from the string
+print(re.findall(r"^\d", text1))
+# ^ means all things expect things , this will return all text without digits
+print(re.findall(r"[^\d]", text1))
+# or you can do this to return all except the string
+print(re.findall(r"\D", text1))
+# Ex2 : let's try extract all digits except the zeros :
+text2 = '0010-000-423'
+# to extract all numbers without zeros or -
+print(re.findall(r"[^0-]", text2))
+# '+' here means 1 or more and will extract all numbers as group
+print(re.findall(r"[^-]+", text2))
+# Ex3 : let's try to extract some digits and words from next text :
+text3 = 'PL code: XG-GH-110'
+# To extract first 2 words then get last 3 number
+print(re.findall(r"PL|\d+", text3))
+# Ex4 : Let's make it harder , Let's extract emails from the next text :
+text4 = "Please send an email to info@template.com or sales-info@template.it"
+# the extraction :
+print(re.findall(r"[\w\.-]+@[\w\.-]+", text4))  # w for strings, . for all , + for getting all
+# Last thing : Substitute the numbers with something else with same pattern
+text5 = "Please send an email to info@template.com or call to: 123-456-789"  # the pattern we need is : \d{3}-\d{3}-\d{3}
+print(re.sub(r"\d{3}-\d{3}-\d{3}", '***-***-***', text5))
+# Now you are familiar with Regular Expression !
