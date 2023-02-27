@@ -36,14 +36,13 @@ import pyautogui as pa
 import pyperclip as pc
 import time
 time.sleep(2)
-while True:
-    #if the text is arabic use this method or any language
-    pc.copy("your text if it's another language")
-    pa.hotkey("ctrl", "v")
-    pa.press("enter")
-    #if it's english use this method
-    pa.typewrite("your text")
-    pa.press("enter")
+#if the text is arabic use this method or any language
+pc.copy("your text if it's another language")
+pa.hotkey("ctrl", "v")
+pa.press("enter")
+#if it's english use this method
+pa.typewrite("your text")
+pa.press("enter")
 #-----------------------------------------------------------------------------------------------------------------------
 import numpy as np
 #numpy is the greatest module for data scientist for matrices operatios
