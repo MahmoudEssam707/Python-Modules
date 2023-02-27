@@ -73,6 +73,14 @@ print(np.corrcoef(np_list3[:,0],np_list3[:,1])) # will return the correlation be
 np_array_doubled = np.array([np_list1,np_list2])
 for item in np_array_doubled : print(item) #in one line
 for item in np.nditer(np_array_doubled) : print(item) #now will print first list items then second one
+np.zeros("dim1","dim2") # to make a matrix of zeros
+np.ones("dim1","dim2") # to make a matrix of ones
+np.arange("start value","end value","Steps") # make an array with start number till end one with specific steps
+np.linspace("start value","end value","the number of values you want to see") # make a matrix with start and end value
+# then print an interval with values from start to end, ex : from 1 to 3 divided to 10 numbers :
+#[1.         1.22222222 1.44444444 1.66666667 1.88888889 2.11111111 2.33333333 2.55555556 2.77777778 3.        ]
+np.full(("dim1","dim2"),"the number") # make a matrix full of specific number
+np.eye("number") # make an identity matrix with specific number
 # -----------------------------------------------------------------------------------------------------------------------
 import matplotlib.pyplot as plt
 
